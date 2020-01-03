@@ -1,17 +1,16 @@
 import React, { Fragment } from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from 'components/user_auth/home';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
     <Fragment>
-      <header className="App-header">
-        <h1>SMS Management APP</h1>
-      </header>
+      <main className="container">
       <Switch>
         <Route path="/" component={Home} />
       </Switch>
+      </main>
     </Fragment>
   );
 }
