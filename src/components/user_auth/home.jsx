@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom'
 
-import NavigationBar from 'components/common/navigationBar';
-import Button from 'components/common/button';
+import NavigationBar from 'components/common/navBar/navigationBar';
+import Button from 'components/common/button/button';
 import smsicon from 'widgets/images/smsicon2.jpeg';
 import './home.scss';
 
@@ -12,7 +12,7 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <NavigationBar />
+        {/* <NavigationBar /> */}
         <div className="home-main">
           <div className="home-content">
             <h1>Welcome to SMS management App</h1>
