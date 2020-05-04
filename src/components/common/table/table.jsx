@@ -37,7 +37,7 @@ const Table = ({ title, columnHeader, contacts, setRequestData }) => {
                     />
                 </td>
                 <td>
-                <Link to="/form"> 
+                <Link to={{pathname: `/editForm/${data._id}`, state :{ data} }} > 
                  <Button
                       text="Edit"
                       type="submit"

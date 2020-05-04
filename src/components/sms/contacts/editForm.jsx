@@ -5,44 +5,40 @@ import InputField from 'components/common/inputField/input';
 import Button from 'components/common/button/button';
 import { API } from 'httpServices/authService';
 
-const ContactForm = (props) => {
+const EditForm = (props) => {
+    const { data } = props.location.state;
     const initialFormState = {
-        contactName: '',
-        contactNumber: '',
+        contactName: data.contactName,
         formErrors: {
           contactNameError: '',
-          contactNumberError: '',
         }
       };
-
-      const [contact, setContact] = useState(initialFormState);
+      const [editContact, setEditContact] = useState(initialFormState);
+    
     
       const handleInputChange = event => {
         const { name, value } = event.target;
-        let formErrors = contact.formErrors;
+        let formErrors = editContact.formErrors;
     
         switch (name) {
           case 'contactName':
             formErrors.contactNameError =
               value.length < 5 ? 'Name must be 5 characters long!' : '';
             break;
-          case 'contactNumber':
-            formErrors.contactNumberError =
-              value.length < 5 ? 'Phone number must be 5 characters long!' : '';
-            break;
           default:
             break;
         }
-        setContact({ ...contact, formErrors, [name]: value });
+        setEditContact({ ...editContact, formErrors, [name]: value });
       };
     
       const handleSubmit = async event => {
         event.preventDefault();
-        const { contactName, contactNumber } = contact;
+        const id = data._id
+        const { contactName } = editContact;
         try {
-          await API.post(`/contacts`, { contactName, contactNumber });
+          await API.patch(`/contacts/`+ id, { contactName });
           props.history.push('/dashboard');
-          NotificationManager.success('Contact created successfully');
+          NotificationManager.success('Contact edited successfully');
         } catch (error) {
           // Fix the error response @harriet
           NotificationManager.error(`Error: ${error}`);
@@ -50,7 +46,7 @@ const ContactForm = (props) => {
       };
 
       const disableSubmitButton =
-        contact.contactName === '' || contact.contactNumber === '';
+        editContact.contactName === '';
     return (
         <Fragment>
             <div className="home-main">
@@ -62,33 +58,19 @@ const ContactForm = (props) => {
                      name="contactName"
                      label="Name"
                      type="text"
-                     value={contact.contactName}
+                     value={editContact.contactName}
                      onChange={handleInputChange}
                    />
-                   {contact.formErrors.contactNameError.length > 0 && (
+                   {editContact.formErrors.contactNameError.length > 0 && (
                      <div
                        style={{
                          color: 'red',
                          fontSize: '12px'
-                       }}>{`* ${contact.formErrors.contactNameError}`}</div>
-                   )}
-                   <InputField
-                     name="contactNumber"
-                     label="Phone Number"
-                     type="number"
-                     value={contact.contactNumber}
-                     onChange={handleInputChange}
-                   />
-                   {contact.formErrors.contactNumberError.length > 0 && (
-                     <div
-                       style={{
-                         color: 'red',
-                         fontSize: '12px'
-                       }}>{`* ${contact.formErrors.contactNumberError }`}</div>
+                       }}>{`* ${editContact.formErrors.contactNameError}`}</div>
                    )}
                   <span className="">
                        <Button
-                         text="Create"
+                         text="Edit"
                          type="submit"
                          value="Submit"
                          className="general-btn"
@@ -104,4 +86,4 @@ const ContactForm = (props) => {
     )
 }
 
-export default ContactForm;
+export default EditForm;
