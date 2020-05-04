@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom'
 
-import NavigationBar from 'components/common/navBar/navigationBar';
+// import NavigationBar from 'components/common/navBar/navigationBar';
 import Button from 'components/common/button/button';
 import smsicon from 'widgets/images/smsicon2.jpeg';
 import './home.scss';
@@ -22,10 +22,10 @@ class Home extends Component {
               <span className="">Please register or login to start using the App</span>
               <span className="">
                 <Link to="/signup">
-                 <Button text="Signup" /> 
+                 <Button className="general-btn" text="Signup" /> 
                  </Link>
                  <Link to="/login">
-                 <Button text="Login"/> 
+                 <Button className="general-btn" text="Login"/> 
                  </Link>
                  </span>
                  </div>

@@ -26,7 +26,7 @@ const Register = props => {
     switch (name) {
       case 'name':
         formErrors.nameError =
-          value.length < 3 ? 'Name must be 3 characters long!' : '';
+          value.length < 5 ? 'Name must be 3 characters long!' : '';
         break;
       case 'phoneNumber':
         formErrors.phoneNumberError =
@@ -116,6 +116,7 @@ const Register = props => {
                       text="Signup"
                       type="submit"
                       value="Submit"
+                      className="general-btn"
                       disabled={disableSubmitButton}
                     />
                   </span>

@@ -1,0 +1,28 @@
+$divBgColor: white;
+
+.home-main {
+  display: flex;
+  background-color: $divBgColor;
+  max-width: 80%;
+  height: 650px;
+  margin: 50px 50px 50px 80px;
+  padding: 50px 50px ;
+
+  .home-content {
+    padding-left: 200px;
+  }
+
+  h1 {
+    font-size:3vw;
+  }
+
+  .home-logo {
+    display: flex;
+  }
+
+  .home-button {
+    display: flex;
+    flex-direction: column;  
+  }
+
+}

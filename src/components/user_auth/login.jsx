@@ -7,7 +7,7 @@ import {
 
 import InputField from 'components/common/inputField/input';
 import Button from 'components/common/button/button';
-import { API } from 'httpServices/authService';
+import { API, setJwt } from 'httpServices/authService';
 import './home.scss';
 
 const Login = props => {
@@ -43,12 +43,13 @@ const Login = props => {
   const handleSubmit = async event => {
     event.preventDefault();
     const { phoneNumber, password } = user;
-    console.log('hereeeeeeeee')
     try {
-      await API.post(`/user/login`, { phoneNumber, password });
-      // props.history.push('/login');
+      const {data} = await API.post(`/user/login`, { phoneNumber, password });
+      // console.log('respnsessssssssss', data)
+      localStorage.setItem("token", data.token)
+      props.history.push('/dashboard');
       NotificationManager.success(
-        'User login successful!'
+        data.message
       );
     } catch (error) {
       // Fix the error response @harriet
@@ -101,6 +102,7 @@ const Login = props => {
                         text="Login"
                         type="submit"
                         value="Submit"
+                        className="general-btn"
                         disabled={disableSubmitButton}
                       />
                   </span>
