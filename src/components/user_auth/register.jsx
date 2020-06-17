@@ -1,4 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState,useContext } from 'react';
+import  {GlobalContext}  from 'context/globalState';
+import { useHistory } from "react-router-dom";
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 import InputField from 'components/common/inputField/input';
@@ -18,6 +20,9 @@ const Register = props => {
     }
   };
   const [user, setUser] = useState(initialFormState);
+  // console.log('$$$$$$$$$$$$$$$$$$$$$',useContext(GlobalContext))
+  const { createUser, employees } = useContext(GlobalContext);
+ let history = useHistory();
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -45,30 +50,20 @@ const Register = props => {
   const handleSubmit = async event => {
     event.preventDefault();
     const { name, phoneNumber, password } = user;
-    try {
-      await API.post(`/user`, { name, phoneNumber, password });
-      props.history.push('/login');
-      NotificationManager.success('User registration successful, login to continue!');
-    } catch (error) {
-      // Fix the error response @harriet
-      NotificationManager.error(`Error: ${error}`);
-    }
+    createUser(name, phoneNumber, password );
+    history.push("/");
+    setUser(initialFormState)
   };
   const disableSubmitButton =
     user.name === '' || user.phoneNumber === '' || user.password === '';
   return (
     <Fragment>
-      <div className="home-main">
-      <NotificationContainer/>
-        <div className="home-content">
-          <h1>Welcome to SMS management App</h1>
-          <div className="home-logo">
             <div className="home-button">
-              <span style={{ paddingBottom: '20px' }}>
-                Please register below
-              </span>
+              <h2 style={{ paddingBottom: '5px' }}>
+                Register
+              </h2>
               <form onSubmit={handleSubmit}>
-                <div className="input-container">
+                <div>
                   <InputField
                     name="name"
                     label="Name"
@@ -77,12 +72,10 @@ const Register = props => {
                     onChange={handleInputChange}
                   />
                   {user.formErrors.nameError.length > 0 && (
-                    <div
-                      style={{
-                        color: 'red',
-                        fontSize: '12px'
-                      }}>{`* ${user.formErrors.nameError}`}</div>
+                    <div className="form-error">{`* ${user.formErrors.nameError}`}</div>
                   )}
+                  </div>
+                  <div>
                   <InputField
                     name="phoneNumber"
                     label="Phone Number"
@@ -91,12 +84,10 @@ const Register = props => {
                     onChange={handleInputChange}
                   />
                   {user.formErrors.phoneNumberError.length > 0 && (
-                    <div
-                      style={{
-                        color: 'red',
-                        fontSize: '12px'
-                      }}>{`* ${user.formErrors.phoneNumberError}`}</div>
+                    <div className="form-error">{`* ${user.formErrors.phoneNumberError}`}</div>
                   )}
+                  </div>
+                  <div>
                   <InputField
                     name="password"
                     label="Password"
@@ -105,27 +96,20 @@ const Register = props => {
                     onChange={handleInputChange}
                   />
                   {user.formErrors.passwordError.length > 0 && (
-                    <div
-                      style={{
-                        color: 'red',
-                        fontSize: '12px'
-                      }}>{`* ${user.formErrors.passwordError}`}</div>
+                    <div className="form-error">{`* ${user.formErrors.passwordError}`}</div>
                   )}
-                  <span className="">
+                  </div>
+                  <span className="btn2">
                     <Button
-                      text="Signup"
+                      text="Submit"
                       type="submit"
                       value="Submit"
-                      className="general-btn"
+                      className="general-btn2"
                       disabled={disableSubmitButton}
                     />
                   </span>
-                </div>
               </form>
             </div>
-          </div>
-        </div>
-      </div>
     </Fragment>
   );
 };

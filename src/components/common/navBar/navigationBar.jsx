@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom'
-import { useAuth } from 'context/context';
+// import { useAuth } from 'context/context';
 import './navigationBar.scss'
 
 const NavigationBar = () => {
-  const getAuth = useAuth()
-  console.log(getAuth.authTokens, '******')
+  let getAuth;
+  // console.log(getAuth.authTokens, '******')
   return (
     <Fragment>
       {!getAuth.authTokens ? (

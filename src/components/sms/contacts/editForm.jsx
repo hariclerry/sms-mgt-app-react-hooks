@@ -35,14 +35,14 @@ const EditForm = (props) => {
         event.preventDefault();
         const id = data._id
         const { contactName } = editContact;
-        try {
-          await API.patch(`/contacts/`+ id, { contactName });
-          props.history.push('/dashboard');
-          NotificationManager.success('Contact edited successfully');
-        } catch (error) {
-          // Fix the error response @harriet
-          NotificationManager.error(`Error: ${error}`);
-        }
+        // try {
+        //   await API.patch(`/contacts/`+ id, { contactName });
+        //   props.history.push('/dashboard');
+        //   NotificationManager.success('Contact edited successfully');
+        // } catch (error) {
+        //   // Fix the error response @harriet
+        //   NotificationManager.error(`Error: ${error}`);
+        // }
       };
 
       const disableSubmitButton =

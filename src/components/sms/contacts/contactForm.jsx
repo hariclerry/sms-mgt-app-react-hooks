@@ -39,21 +39,21 @@ const ContactForm = (props) => {
       const handleSubmit = async event => {
         event.preventDefault();
         const { contactName, contactNumber } = contact;
-        try {
-          await API.post(`/contacts`, { contactName, contactNumber });
-          props.history.push('/dashboard');
-          NotificationManager.success('Contact created successfully');
-        } catch (error) {
-          // Fix the error response @harriet
-          NotificationManager.error(`Error: ${error}`);
-        }
+        // try {
+        //   await API.post(`/contacts`, { contactName, contactNumber });
+        //   props.history.push('/dashboard');
+        //   NotificationManager.success('Contact created successfully');
+        // } catch (error) {
+        //   // Fix the error response @harriet
+        //   NotificationManager.error(`Error: ${error}`);
+        // }
       };
 
       const disableSubmitButton =
         contact.contactName === '' || contact.contactNumber === '';
     return (
         <Fragment>
-            <div className="home-main">
+            <div className="home-main1">
             <div className="home-button">
               <span style={{ paddingBottom: '20px' }}>Please create contact below</span>
                  <form onSubmit={handleSubmit}>

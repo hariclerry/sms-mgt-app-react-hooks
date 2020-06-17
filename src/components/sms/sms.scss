@@ -1,6 +1,6 @@
 $divBgColor: white;
 
-.home-main {
+.home-main1 {
   display: flex;
   background-color: $divBgColor;
   max-width: 80%;
@@ -8,7 +8,7 @@ $divBgColor: white;
   margin: 50px 50px 50px 80px;
   padding: 50px 50px ;
 
-  .home-content {
+  .home-content1 {
     padding-left: 200px;
   }
 
@@ -18,11 +18,6 @@ $divBgColor: white;
 
   .home-logo {
     display: flex;
-  }
-
-  .home-button {
-    display: flex;
-    flex-direction: column;  
   }
 
 }

@@ -8,7 +8,7 @@ import './table.css';
 const Table = ({ title, columnHeader, contacts, setRequestData }) => {
 
   const handleDelete = async (id) => {
-    await API.delete('/contacts/' + id)
+    // await API.delete('/contacts/' + id)
     setRequestData(new Date())
   }
 
@@ -29,12 +29,14 @@ const Table = ({ title, columnHeader, contacts, setRequestData }) => {
               <td>{data.contactName}</td>
               <td>{data.contactNumber}</td>
               <td> 
+              <Link to={{pathname: `/sms/${data._id}`, state :{ data} }} > 
                 <Button
                       text="Sms"
                       type="submit"
                       value="Submit"
                       className="sms-btn"
                     />
+                    </Link>
                 </td>
                 <td>
                 <Link to={{pathname: `/editForm/${data._id}`, state :{ data} }} > 

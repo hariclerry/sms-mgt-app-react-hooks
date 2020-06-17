@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  NotificationContainer,
   NotificationManager
 } from 'react-notifications';
 
@@ -43,32 +42,25 @@ const Login = props => {
   const handleSubmit = async event => {
     event.preventDefault();
     const { phoneNumber, password } = user;
-    try {
-      const {data} = await API.post(`/user/login`, { phoneNumber, password });
-      // console.log('respnsessssssssss', data)
-      localStorage.setItem("token", data.token)
-      props.history.push('/dashboard');
-      NotificationManager.success(
-        data.message
-      );
-    } catch (error) {
-      // Fix the error response @harriet
-      NotificationManager.error(`Error: ${error}`);
-    }
+    // try {
+    //   const {data} = await API.post(`/user/login`, { phoneNumber, password });
+    //   localStorage.setItem("token", data.token)
+    //   props.history.push('/dashboard');
+    //   NotificationManager.success(
+    //     data.message
+    //   );
+    // } catch (error) {
+    //   NotificationManager.error(`Error: ${error}`);
+    // }
   };
   const disableSubmitButton =
     user.name === '' || user.phoneNumber === '' || user.password === '';
   return (
     <Fragment>
-      <div className="home-main">
-        <NotificationContainer />
-        <div className="home-content">
-          <h1>Welcome to SMS management App</h1>
-          <div className="home-logo">
             <div className="home-button">
-              <span style={{ paddingBottom: '20px' }}>Please login below</span>
+              <h2 style={{ paddingBottom: '5px' }}>Login</h2>
               <form onSubmit={handleSubmit}>
-                <div className="input-container">
+                <div>
                   <InputField
                     name="phoneNumber"
                     label="Phone Number"
@@ -77,12 +69,10 @@ const Login = props => {
                     onChange={handleInputChange}
                   />
                   {user.formErrors.phoneNumberError.length > 0 && (
-                    <div
-                      style={{
-                        color: 'red',
-                        fontSize: '12px'
-                      }}>{`* ${user.formErrors.phoneNumberError}`}</div>
+                    <div className="form-error">{`* ${user.formErrors.phoneNumberError}`}</div>
                   )}
+                  </div>
+                  <div>
                   <InputField
                     name="password"
                     label="Password"
@@ -91,27 +81,20 @@ const Login = props => {
                     onChange={handleInputChange}
                   />
                   {user.formErrors.passwordError.length > 0 && (
-                    <div
-                      style={{
-                        color: 'red',
-                        fontSize: '12px'
-                      }}>{`* ${user.formErrors.passwordError}`}</div>
+                    <div className="form-error">{`* ${user.formErrors.passwordError}`}</div>
                   )}
-                  <span className="">
+                  </div>
+                  <span className="btn2">
                       <Button
-                        text="Login"
+                        text="Submit"
                         type="submit"
                         value="Submit"
-                        className="general-btn"
+                        className="general-btn2"
                         disabled={disableSubmitButton}
                       />
                   </span>
-                </div>
               </form>
             </div>
-          </div>
-        </div>
-      </div>
     </Fragment>
   );
 };

@@ -5,7 +5,6 @@ import Table from 'components/common/table/table'
 
 const ContactLists = ({contacts, handleDelete, setRequestData}) => {
   const columns = [
-    // { key: 'number', label: '#' },
     { key: 'name', label: 'Name', content: contact => {
       console.log('herereeee', contact)
         return (
