@@ -1,23 +1,18 @@
-$divBgColor: white;
-
-.home-main1 {
+.header-bar{
   display: flex;
-  background-color: $divBgColor;
-  max-width: 80%;
-  height: 650px;
-  margin: 50px 50px 50px 80px;
-  padding: 50px 50px ;
-
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 25px 0 25px;
+  padding-bottom: 20px;
+}
   .home-content1 {
     padding-left: 200px;
   }
 
-  h1 {
-    font-size:3vw;
-  }
+.header-bar h2{
+  // padding: 0, 55px 0 25px;
+}
 
   .home-logo {
     display: flex;
   }
-
-}

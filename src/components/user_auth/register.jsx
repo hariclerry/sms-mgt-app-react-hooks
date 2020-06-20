@@ -20,8 +20,7 @@ const Register = props => {
     }
   };
   const [user, setUser] = useState(initialFormState);
-  // console.log('$$$$$$$$$$$$$$$$$$$$$',useContext(GlobalContext))
-  const { createUser, employees } = useContext(GlobalContext);
+  const { createUser } = useContext(GlobalContext);
  let history = useHistory();
 
   const handleInputChange = event => {

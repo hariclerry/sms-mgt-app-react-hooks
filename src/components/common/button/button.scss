@@ -8,6 +8,22 @@
     border: none; 
     box-shadow:4px 4px 10px rgba(0,0,0,0.06); 
     border-radius: 3px;
+    cursor: pointer;
+    outline:none;
+}
+
+.general-btn-add {
+    background: white;
+    width: 100px;
+    height: 35px; 
+    margin: 10px; 
+    color: #78b234;
+    font-size: 15px; 
+    border: 2px solid #78b234; 
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+    outline:none;
 }
 
 .general-btn2 {
@@ -21,17 +37,37 @@
     box-shadow:4px 4px 10px rgba(0,0,0,0.06);
     margin: 8px 0;
     border-radius: 3px;
+    cursor: pointer;
+    outline:none;
+}
+
+.general-btn3 {
+    background-color: #959792;
+    width: 100%;
+    height: 35px; 
+    margin: 10px; 
+    color: #fff;
+    font-size: 15px; 
+    border: none; 
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    margin: 8px 0;
+    border-radius: 3px;
+    cursor: pointer;
+    outline:none;
 }
 
 .sms-btn {
-    background-color: #33cc33;
+    background-color: #78b234;
     width: 100px;
     height: 35px; 
     margin: 10px; 
     color: #fff;
     font-size: 15px; 
-    border-color: #33cc33; 
+    border: none; 
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06); 
     border-radius: 3px;
+    cursor: pointer;
+    outline:none;
 }
 
 .delete-btn {
@@ -41,6 +77,22 @@
     margin: 10px; 
     color: #fff;
     font-size: 15px; 
-    border-color: #e60000; 
+    border: none; 
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06); 
     border-radius: 3px;
+    outline:none;
+    cursor: pointer;
+}
+
+.delete-btn2 {
+    background: none;
+    width: 100px;
+    height: 35px; 
+    margin: 10px; 
+    color: rgb(219, 9, 9);
+    font-size: 15px; 
+    border: none; 
+    border-radius: 3px;
+    outline:none;
+    cursor: pointer;
 }

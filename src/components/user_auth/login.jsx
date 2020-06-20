@@ -1,8 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  NotificationManager
-} from 'react-notifications';
+import  {GlobalContext}  from 'context/globalState';
+import { useHistory } from "react-router-dom";
 
 import InputField from 'components/common/inputField/input';
 import Button from 'components/common/button/button';
@@ -19,6 +18,9 @@ const Login = props => {
     }
   };
   const [user, setUser] = useState(initialFormState);
+  const { loginUser } = useContext(GlobalContext);
+  let history = useHistory();
+  
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -42,16 +44,7 @@ const Login = props => {
   const handleSubmit = async event => {
     event.preventDefault();
     const { phoneNumber, password } = user;
-    // try {
-    //   const {data} = await API.post(`/user/login`, { phoneNumber, password });
-    //   localStorage.setItem("token", data.token)
-    //   props.history.push('/dashboard');
-    //   NotificationManager.success(
-    //     data.message
-    //   );
-    // } catch (error) {
-    //   NotificationManager.error(`Error: ${error}`);
-    // }
+    loginUser(phoneNumber, password, history)
   };
   const disableSubmitButton =
     user.name === '' || user.phoneNumber === '' || user.password === '';

@@ -1,50 +1,33 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect,useContext } from 'react';
 import { Link } from 'react-router-dom'
 
-// import {useAuth} from 'context/context'
-import ContactLists from 'components/sms/contacts/contactLists'
+import  {GlobalContext}  from 'context/globalState';
 import NavigationBar from 'components/common/navBar/navigationBar';
-import {API} from 'httpServices/authService'
 import Button from 'components/common/button/button';
+import Table from 'components/sms/contacts/table'
 
 import './sms.scss';
 
 const Dashboard = (props) => {
-  const [contacts, setContacts] = useState([]);
   const [requestData, setRequestData] = useState(new Date());
+  const { fetchContacts} = useContext(GlobalContext);
 
-  let authTokens;
     
   useEffect (() => {
     fetchContacts();
   }, [requestData])
 
-  const fetchContacts = async () => {
-    // try {
-    //   const { data } = await API.get('/contacts');
-    //   setContacts(data)
-    // } catch (error) {
-    //   return null;
-    // }
-  }
-
   return (
     <Fragment>
        <NavigationBar />
-      <div className="home-main1">
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
-          <div style={{display: "inline-flex"}}>
-            <div>
-      <h2> Welcome {authTokens.user.phoneNumber} to your Dashboard </h2>
-      </div>
-      <div>
+      <div className="main-dashboard">
+      <div className="header-bar">
+      <h2> Welcome to your Dashboard </h2>
       <Link to="/form">
-        <Button className="general-btn" text="Contact"/> 
+        <Button className="general-btn-add" text="Add contact"/> 
       </Link>
       </div>
-      </div>
-          <ContactLists contacts={contacts} setRequestData={setRequestData}/>
-          </div>
+          <Table setRequestData={setRequestData}/>
       </div>
     </Fragment>
   );

@@ -1,5 +1,6 @@
-import React, {Fragment, useState} from 'react';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import React, {Fragment, useState,useContext} from 'react';
+import  {GlobalContext}  from 'context/globalState';
+import { useHistory } from "react-router-dom";
 
 import InputField from 'components/common/inputField/input';
 import Button from 'components/common/button/button';
@@ -14,6 +15,8 @@ const EditForm = (props) => {
         }
       };
       const [editContact, setEditContact] = useState(initialFormState);
+      const { editContacts } = useContext(GlobalContext);
+      let history = useHistory();
     
     
       const handleInputChange = event => {
@@ -35,52 +38,39 @@ const EditForm = (props) => {
         event.preventDefault();
         const id = data._id
         const { contactName } = editContact;
-        // try {
-        //   await API.patch(`/contacts/`+ id, { contactName });
-        //   props.history.push('/dashboard');
-        //   NotificationManager.success('Contact edited successfully');
-        // } catch (error) {
-        //   // Fix the error response @harriet
-        //   NotificationManager.error(`Error: ${error}`);
-        // }
+        editContacts(contactName,id,history)
       };
 
       const disableSubmitButton =
         editContact.contactName === '';
     return (
         <Fragment>
-            <div className="home-main">
             <div className="home-button">
-              <span style={{ paddingBottom: '20px' }}>Please create contact below</span>
+              <h2 style={{ padding: '20px' }}>Edit contact</h2>
                  <form onSubmit={handleSubmit}>
                  <div className="input-container">
                    <InputField
                      name="contactName"
-                     label="Name"
+                     label="Contact Name"
                      type="text"
                      value={editContact.contactName}
                      onChange={handleInputChange}
                    />
                    {editContact.formErrors.contactNameError.length > 0 && (
-                     <div
-                       style={{
-                         color: 'red',
-                         fontSize: '12px'
-                       }}>{`* ${editContact.formErrors.contactNameError}`}</div>
+                     <div className="form-error">{`* ${editContact.formErrors.contactNameError}`}</div>
                    )}
                   <span className="">
                        <Button
-                         text="Edit"
+                         text="Submit"
                          type="submit"
                          value="Submit"
-                         className="general-btn"
+                         className="general-btn2"
                          disabled={disableSubmitButton}
                        />
                    </span>
                  </div>
                </form>
         </div>
-      </div>
         </Fragment>
 
     )

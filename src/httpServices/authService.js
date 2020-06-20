@@ -4,7 +4,7 @@ import config from "config/config";
 export const userService = {
   get,
   post,
-  put,
+  patch,
   deleteDetail,
 };
 function get(apiEndpoint) {
@@ -27,9 +27,9 @@ function post(apiEndpoint, payload) {
       console.log(err);
     });
 }
-function put(apiEndpoint, payload) {
+function patch(apiEndpoint, payload) {
   return axios
-    .put(config.baseUrl + apiEndpoint, payload, getOptions())
+    .patch(config.baseUrl + apiEndpoint, payload, getOptions())
     .then((response) => {
       return response;
     })

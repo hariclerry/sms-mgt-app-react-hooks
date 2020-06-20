@@ -1,18 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-// import {useAuth} from 'context/context'
+import  {GlobalContext}  from 'context/globalState';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
- 
-  let authTokens;
+  const {loggedIn} = useContext(GlobalContext)
   return (
     <Fragment>
-      {/* {console.log("authTokens............", authTokens)} */}
      <Route {...rest} render={(props) => 
-      authTokens
-      ? (<Component {...props} />)
-      : (<Redirect  to="/login" />)
+    loggedIn === true
+      ? <Component {...props} />
+      : <Redirect  to="/" />
   } />
   </Fragment>
   )

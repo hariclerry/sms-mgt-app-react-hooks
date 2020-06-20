@@ -15,43 +15,46 @@ import SmsBoard from 'components/sms/sms/smsLists'
 import Logout from 'components/user_auth/logout';
 import PrivateRoute from 'components/user_auth/privateRoute';
 // import {setJwt} from 'httpServices/authService'
-import { GlobalProvider } from 'context/globalState';
+// import { GlobalProvider } from 'context/globalState';
 import './App.scss';
 
 
 function App() {
-  const [authTokens, setAuthTokens] = useState();
+  // const [authTokens, setAuthTokens] = useState();
 
-  useEffect(() => {
-    getTokens();
-  }, []); 
+  // useEffect(() => {
+  //   getTokens();
+  // }, []); 
 
-  const getTokens = () => {
-    try {
-     const jwt = localStorage.getItem('token')
-     const user = jwtDecode(jwt);
-     setAuthTokens({user})
-    } catch (error) {
-      return null;
-    }
-   }
+  // const getTokens = () => {
+  //   try {
+  //    const jwt = localStorage.getItem('token')
+  //    const user = jwtDecode(jwt);
+  //    setAuthTokens({user})
+  //   } catch (error) {
+  //     return null;
+  //   }
+  //  }
 
   return (
-    <GlobalProvider>
     <Fragment>
       <Switch>
         <Route path="/signup" component={Register} />
         <Route path="/login" component={Login} />
-        <Route path="/logout" component={Logout} />
-        <PrivateRoute path="/dashboard" component={Dashboard} />
-        <Route path="/form" component={ContactForm} />
-        <Route path="/editForm/:id" component={EditForm} />
-        <Route path="/sms/:id" component={SmsBoard} />
+        <PrivateRoute path="/logout" component={Logout} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        {/* <Route path="/dashboard" component={Dashboard} /> */}
+        <PrivateRoute path="/form" component={ContactForm} />
+        {/* <Route path="/form" component={ContactForm} /> */}
+        {/* <Route path="/editForm/:id" component={EditForm} /> */}
+        <PrivateRoute path="/editForm/:id" component={EditForm} />
+        {/* <Route path="/sms/:id" component={SmsBoard} /> */}
+        <PrivateRoute path="/sms/:id" component={SmsBoard} />
         <Route exact path="/" component={Home} />
       </Switch>
+      <NotificationContainer />
     </Fragment>
-    <NotificationContainer />
-    </GlobalProvider>
+
   );
 }
 

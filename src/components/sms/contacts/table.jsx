@@ -1,31 +1,34 @@
-import React, { Fragment } from 'react';
+import React, { Fragment,useContext } from 'react';
 import { Link } from 'react-router-dom'
+import  {GlobalContext}  from 'context/globalState';
 
 import Button from 'components/common/button/button';
-import {API} from 'httpServices/authService'
 import './table.css';
 
-const Table = ({ title, columnHeader, contacts, setRequestData }) => {
+const Table = ({ setRequestData }) => {
+  const { deleteContacts, contacts} = useContext(GlobalContext);
 
   const handleDelete = async (id) => {
-    // await API.delete('/contacts/' + id)
+    deleteContacts(id)
     setRequestData(new Date())
   }
-
   return (
     <Fragment>
-      <h2>{title}</h2>
-
-      <div className="table-main">
+      { contacts && contacts.length <= 0  ? <p className="message-title"> No Contacts </p> :
+      <div>
+      <h3 className="table-text">Lists of Contacts</h3>
+      <div className="contact-table">
         <table>
           <tr>
-            {columnHeader.map(header => (
-              <th>{header.label}</th>
-            ))}
+          <th>Name</th>
+          <th>phoneNumber</th>
+          <th></th>
+          <th></th>
+          <th></th>
           </tr>
             {contacts && contacts.map(data => {
               return (
-              <tr>
+              <tr id={data._id}>
               <td>{data.contactName}</td>
               <td>{data.contactNumber}</td>
               <td> 
@@ -61,7 +64,10 @@ const Table = ({ title, columnHeader, contacts, setRequestData }) => {
               )
             })}{' '}
         </table>
-      </div>
+        </div>
+        </div>
+        
+}
     </Fragment>
   );
 };
