@@ -1,40 +1,58 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom'
+import React, { Fragment,useState } from 'react';
 
-import NavigationBar from 'components/common/navBar/navigationBar';
 import Button from 'components/common/button/button';
+import Register from 'components/user_auth/register';
+import Login from 'components/user_auth/login';
 import smsicon from 'widgets/images/smsicon2.jpeg';
 import './home.scss';
 
-class Home extends Component {
-  state = {};
+const Home = () => {
+const [toggleForm, setToggleForm] = useState(false)
 
-  render() {
-    return (
-      <Fragment>
-        {/* <NavigationBar /> */}
-        <div className="home-main">
-          <div className="home-content">
-            <h1>Welcome to SMS management App</h1>
-            <div className="home-logo">
-              <img src={smsicon} alt="sms icon" width="600" />
-              <div className="home-button">
-              <span className="">Please register or login to start using the App</span>
-              <span className="">
-                <Link to="/signup">
-                 <Button text="Signup" /> 
-                 </Link>
-                 <Link to="/login">
-                 <Button text="Login"/> 
-                 </Link>
-                 </span>
-                 </div>
-            </div>
-          </div>
-        </div>
-      </Fragment>
-    );
+const handleToggleForm = () => {
+  if (!toggleForm) {
+    setToggleForm(true)
+  } else {
+  setToggleForm(false)
   }
+}
+  return (
+    <Fragment>
+        <aside>
+        <div className="image">
+        <img src={smsicon} alt="sms icon" width="100" />
+        <h1>SMS Management App</h1>
+        </div>
+          
+          <div className="home-text">
+          <p>Stay connected with family, friends and colleagues with Sms management App.</p>
+          <p>Add contacts and send Sms with Sms management App.</p>
+          </div>
+        <div className="link-button">
+        {toggleForm ? (
+               <Button onClick={handleToggleForm} className="general-btn2" text="Register" />
+        ) :
+               <Button onClick={handleToggleForm} className="general-btn2" text="Login"/> 
+        }
+               </div>
+        </aside>
+        <div className="main-container">
+        <div className="content-main">
+        <section className=""> 
+        <h1 className="content-text">Welcome to SMS management App</h1>
+        {!toggleForm ? (
+   <Register/>
+        )
+        :
+        <Login/>
+        }
+          
+          </section>
+        </div>
+        </div>
+        <footer><p>&copy; harriet. All rights reserved</p></footer>
+    </Fragment>
+  );
 }
 
 export default Home;

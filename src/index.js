@@ -4,11 +4,14 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { GlobalProvider } from 'context/globalState';
 
 ReactDOM.render(
+    <GlobalProvider>
   <BrowserRouter>
     <App />
   </BrowserRouter>,
+    </GlobalProvider>,
   document.getElementById('root')
 );
 
