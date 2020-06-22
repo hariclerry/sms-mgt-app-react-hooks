@@ -1,3 +1,3 @@
 module.exports = {
-    baseUrl:  `http://localhost:3009/api/v1/`
+    baseUrl:  `https://sms-mgt-app-api.herokuapp.com/`
 }
