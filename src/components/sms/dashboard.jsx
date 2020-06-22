@@ -8,7 +8,7 @@ import Table from 'components/sms/contacts/table'
 
 import './sms.scss';
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   const [requestData, setRequestData] = useState(new Date());
   const { fetchContacts} = useContext(GlobalContext);
 

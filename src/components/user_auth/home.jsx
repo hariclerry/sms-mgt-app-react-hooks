@@ -1,7 +1,5 @@
 import React, { Fragment,useState } from 'react';
-import { Link } from 'react-router-dom'
 
-// import NavigationBar from 'components/common/navBar/navigationBar';
 import Button from 'components/common/button/button';
 import Register from 'components/user_auth/register';
 import Login from 'components/user_auth/login';

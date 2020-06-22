@@ -3,8 +3,6 @@ import { NotificationManager } from 'react-notifications';
 import {userService} from "httpServices/authService";
 import AppReducer from "context/appReducer";
 
-let token = localStorage.getItem('token');
-const authorization = token ? { loggedIn: true, token } : {loggedIn: false};
 const initialState = {
   loggedIn: false,
   contacts: [],
@@ -15,18 +13,6 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({ children }) => {
 const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  function removeEmployee(id) {
-    dispatch({
-      type: "REMOVE_EMPLOYEE",
-      payload: id
-    });
-  }
-
-  function registerUser() {
-    return{
-      type: "REGISTER_USER"
-    };
-  }
   const createUser = async (name, phoneNumber, password) => {
     let apiEndpoint = "user";
     let payload = {
@@ -39,7 +25,6 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
       dispatch({ type: 'REGISTER_USER' })
       NotificationManager.success('Registration Succesful!', 'Successful!', 2000);
     } catch (error) {
-      // dispatch({ type: 'FAILURE', error: error.message || error })
       NotificationManager.error('User Email already exists!', 'Error!');
 
     }
@@ -60,7 +45,6 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
      history.push('/dashboard')
       NotificationManager.success('Login Succesful!', 'Successful!', 2000);
     } catch (error) {
-      // dispatch({ type: 'FAILURE', error: error.message || error })
       NotificationManager.error('Wrong user phone number or password!', 'Error!');
 
     }
@@ -70,10 +54,8 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
     let apiEndpoint = "contacts";
     try {
       const response = await userService.get(apiEndpoint)
-      // console.log('responseeeeedfetch',response.data)
       dispatch({ type: 'FETCH_CONTACTS', contacts: response.data })
     } catch (error) {
-      // dispatch({ type: 'FAILURE', error: error.message || error })
       NotificationManager.error('Failed to fetch contacts!', 'Error!');
 
     }
@@ -86,14 +68,12 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
     };
     try {
       const response = await userService.post(apiEndpoint, payload)
-      // console.log('responseeeee',response.data)
       dispatch({ type: 'ADD_CONTACTS',
       contact: response.data.data
      })
      history.push('/dashboard')
       NotificationManager.success('Contact added successfully', 'Successful!', 2000);
     } catch (error) {
-      // dispatch({ type: 'FAILURE', error: error.message || error })
       NotificationManager.error('Failed to add contact!', 'Error!');
 
     }
@@ -112,7 +92,6 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
      history.push('/dashboard')
       NotificationManager.success('Contact edited successfully', 'Successful!', 2000);
     } catch (error) {
-      // dispatch({ type: 'FAILURE', error: error.message || error })
       NotificationManager.error('Failed to edit contact!', 'Error!');
 
     }
@@ -125,10 +104,8 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
       dispatch({ type: 'DELETE_CONTACTS',
       contact: response.data,
      })
-    //  history.push('/dashboard')
       NotificationManager.success('Contact deleted successfully', 'Successful!', 2000);
     } catch (error) {
-      // dispatch({ type: 'FAILURE', error: error.message || error })
       NotificationManager.error('Failed to delete contacts!', 'Error!');
 
     }
@@ -141,7 +118,6 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
       console.log('respionseFetchhhhhhh',response.data)
       dispatch({ type: 'FETCH_SMS', sms: response.data })
     } catch (error) {
-      // dispatch({ type: 'FAILURE', error: error.message || error })
       NotificationManager.error('Failed to fetch contacts!', 'Error!');
 
     }
@@ -159,7 +135,6 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
      })
       NotificationManager.success('Sms added successfully', 'Successful!', 2000);
     } catch (error) {
-      // dispatch({ type: 'FAILURE', error: error.message || error })
       NotificationManager.error('Failed to add contact!', 'Error!');
 
     }
@@ -175,7 +150,6 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
      window.location.reload()
       NotificationManager.success('Sms deleted successfully', 'Successful!', 2000);
     } catch (error) {
-      // dispatch({ type: 'FAILURE', error: error.message || error })
       NotificationManager.error('Failed to delete contacts!', 'Error!');
 
     }

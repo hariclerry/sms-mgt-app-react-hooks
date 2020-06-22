@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 import InputField from 'components/common/inputField/input';
 import Button from 'components/common/button/button';
-import { API } from 'httpServices/authService';
 
 const EditForm = (props) => {
     const { data } = props.location.state;

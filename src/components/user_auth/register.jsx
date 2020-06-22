@@ -1,11 +1,9 @@
 import React, { Fragment, useState,useContext } from 'react';
 import  {GlobalContext}  from 'context/globalState';
 import { useHistory } from "react-router-dom";
-import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 import InputField from 'components/common/inputField/input';
 import Button from 'components/common/button/button';
-import { API } from 'httpServices/authService';
 import './home.scss';
 
 const Register = props => {

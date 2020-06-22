@@ -1,11 +1,9 @@
 import React, { Fragment, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import  {GlobalContext}  from 'context/globalState';
 import { useHistory } from "react-router-dom";
 
 import InputField from 'components/common/inputField/input';
 import Button from 'components/common/button/button';
-import { API, setJwt } from 'httpServices/authService';
 import './home.scss';
 
 const Login = props => {
