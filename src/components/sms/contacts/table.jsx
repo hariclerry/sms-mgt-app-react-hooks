@@ -19,6 +19,7 @@ const Table = ({ setRequestData }) => {
       <h3 className="table-text">Lists of Contacts</h3>
       <div className="contact-table">
         <table>
+        <thead>
           <tr>
           <th>Name</th>
           <th>phoneNumber</th>
@@ -26,9 +27,11 @@ const Table = ({ setRequestData }) => {
           <th></th>
           <th></th>
           </tr>
+          </thead>
+          <tbody>
             {contacts && contacts.map(data => {
               return (
-              <tr id={data._id}>
+              <tr key={data._id}>
               <td>{data.contactName}</td>
               <td>{data.contactNumber}</td>
               <td> 
@@ -62,7 +65,8 @@ const Table = ({ setRequestData }) => {
                 </td>
               </tr>
               )
-            })}{' '}
+            })}
+            </tbody>
         </table>
         </div>
         </div>

@@ -3,8 +3,10 @@ import { NotificationManager } from 'react-notifications';
 import {userService} from "httpServices/authService";
 import AppReducer from "context/appReducer";
 
+let token = localStorage.getItem('token');
+const isLoggedIn = token ? true :  false;
 const initialState = {
-  loggedIn: false,
+  loggedIn:isLoggedIn,
   contacts: [],
   sms: []
 }
@@ -115,7 +117,6 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
     let apiEndpoint = `contacts/${id}/sms`;
     try {
       const response = await userService.get(apiEndpoint)
-      console.log('respionseFetchhhhhhh',response.data)
       dispatch({ type: 'FETCH_SMS', sms: response.data })
     } catch (error) {
       NotificationManager.error('Failed to fetch contacts!', 'Error!');
@@ -129,8 +130,6 @@ const [state, dispatch] = useReducer(AppReducer, initialState);
     };
     try {
       const response = await userService.post(apiEndpoint, payload)
-      console.log('respionseadddddd.data',response.data)
-      console.log('respionseadddddd.data.data',response.data.data.sms)
       dispatch({ type: 'ADD_SMS', sms: response.data.data.sms
      })
       NotificationManager.success('Sms added successfully', 'Successful!', 2000);

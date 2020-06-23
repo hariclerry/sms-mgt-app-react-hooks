@@ -98,6 +98,10 @@ section {
     align-items: center;
   } 
 
+  footer p{
+    padding-left: 250px;
+  }
+
   @media all and (max-width: 720px) {
   
     aside{
@@ -113,6 +117,10 @@ section {
     
        section{
         padding: 0 40px 0 0;
+    }
+
+    footer p{
+      padding-left: 0;
     }
     }
 
