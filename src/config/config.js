@@ -1,3 +1,3 @@
 module.exports = {
-    baseUrl:  `https://sms-mgt-app-api.herokuapp.com/`
+    baseUrl:  `https://sms-mgt-app-api.herokuapp.com/api/v1/`
 }
