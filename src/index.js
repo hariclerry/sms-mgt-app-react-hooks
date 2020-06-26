@@ -7,11 +7,11 @@ import * as serviceWorker from './serviceWorker';
 import { GlobalProvider } from 'context/globalState';
 
 ReactDOM.render(
-    <GlobalProvider>
+  <GlobalProvider>
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
-    </GlobalProvider>,
+  </BrowserRouter>
+  </GlobalProvider>,
   document.getElementById('root')
 );
 

@@ -25,8 +25,8 @@ function App() {
         <PrivateRoute path="/logout" component={Logout} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/form" component={ContactForm} />
+        <Route path="/sms/:id" component={SmsBoard} />
         <PrivateRoute path="/editForm/:id" component={EditForm} />
-        <PrivateRoute path="/sms/:id" component={SmsBoard} />
         <Route exact path="/" component={Home} />
       </Switch>
       <NotificationContainer />

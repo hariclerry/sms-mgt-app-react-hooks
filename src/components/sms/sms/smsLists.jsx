@@ -22,7 +22,7 @@ const SmsBoard = (props) => {
       useEffect (() => {
         const id = data._id
         fetchSms(id);
-      }, [requestData])
+      }, [])
     
       const handleInputChange = event => {
         const { name, value } = event.target;
@@ -50,11 +50,13 @@ const SmsBoard = (props) => {
             contentError: '',
           }
         })
+        setRequestData(new Date())
       };
 
       const handleDelete = async (smsId) => {
         const contactId = data._id
         deleteSms(contactId, smsId)
+        setRequestData(new Date())
       }
       const disableSubmitButton =
       smsData.content === '';
@@ -80,15 +82,6 @@ const SmsBoard = (props) => {
                          disabled={disableSubmitButton}
                        />
                    </span>
-
-                      <Link to="/dashboard">
-                       <Button
-                         text="Cancel"
-                         type="submit"
-                         value="Submit"
-                         className="general-btn3"
-                       />
-                       </Link>
                    </div>
                </form>
 
@@ -98,7 +91,7 @@ const SmsBoard = (props) => {
             
                       sms && sms.map(message => { 
                           return(
-                            <div className="content">
+                            <div className="content" key={message._id}>
                                 <p className="message1">{message.content}</p>
                                 <Button
                      onClick = {() => handleDelete(message._id)}
